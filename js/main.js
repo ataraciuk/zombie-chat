@@ -33,7 +33,7 @@ ZombieChat.DOM = {
 
 ZombieChat.ctracker = null;
 
-ZombieChat.transparency = 0.4;
+ZombieChat.transparency = 0; // start out at no zombie stuff visible
 
 ZombieChat.drawLoop = function() {
 	requestAnimationFrame(ZombieChat.drawLoop);
