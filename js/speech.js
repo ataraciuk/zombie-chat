@@ -162,6 +162,10 @@ window.Speech = (function (undefined) {
             if (self.options.debugging) {
                 console.log(transcript + (updatedResult.isFinal ? ' (final)' : ''))
             }
+
+            if (updatedResult.isFinal) {
+                ProcessText(transcript);
+            }
         }
 
         rec.onerror = function (e) {
@@ -179,6 +183,17 @@ window.Speech = (function (undefined) {
             }
         }
 
+    }
+
+    function ProcessText (transcript) {
+        var percentZombie = 0;
+        var category; // which one is selected by user
+
+        // load dictionary file for category
+
+        // process text
+
+        // adjust percent if necessary
     }
 
     Speech.prototype.start = function () {
