@@ -33,10 +33,15 @@ ZombieChat.DOM = {
 
 ZombieChat.ctracker = null;
 
+ZombieChat.transparency = 0.4;
+
 ZombieChat.drawLoop = function() {
 	requestAnimationFrame(ZombieChat.drawLoop);
 	var positions = ZombieChat.ctracker.getCurrentPosition();
 	if(typeof positions === "object" && positions.length > 50) {
+
+		ZombieChat.DOM.context.globalAlpha = ZombieChat.transparency;
+
 		ZombieChat.DOM.context.clearRect(0, 0, ZombieChat.DOM.canvas.width, ZombieChat.DOM.canvas.height);
 		var nosePos = [positions[34], positions[40], positions[37]];
 		var noseWidth = nosePos[1][0] - nosePos[0][0],
