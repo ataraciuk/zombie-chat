@@ -47,11 +47,33 @@ ZombieChat.drawLoop = function() {
 			deltaXForHeight = nosePos[2][0] - middlePointX;
 		var angle = Math.atan2(deltaY,noseWidth);
 		var sin = Math.sin(angle), cos = Math.cos(angle);
-		var rotatedWidth = cos === 0 ? deltaY : noseWidth / cos,
-			rotatedHeight = cos === 0 ? deltaXForHeight : noseHeight / cos;
-		console.log(noseHeight);
-		ZombieChat.ctracker.draw(ZombieChat.DOM.canvas);
-		ZombieChat.drawRotated(ZombieChat.DOM.imgs["img-nose"],Math.floor(middlePointX),Math.floor(middlePointY + noseHeight / 2),Math.floor(rotatedWidth),Math.floor(rotatedHeight), angle);
+		var rotatedWidth = cos === 0 ? Math.abs(deltaY) : noseWidth / cos,
+			rotatedHeight = cos === 0 ? Math.abs(deltaXForHeight) : noseHeight / cos;
+		//ZombieChat.ctracker.draw(ZombieChat.DOM.canvas);
+		ZombieChat.drawRotated(ZombieChat.DOM.imgs["img-nose"],Math.floor(middlePointX),Math.floor(middlePointY + noseHeight / 20),Math.floor(rotatedWidth),Math.floor(rotatedHeight * 1.5), angle);
+		var jawPos = [positions[53], positions[5], positions[9], positions[7]];
+		var scale = 0.6;
+		var jawWidth = (jawPos[2][0] - jawPos[1][0]) * scale,
+			jawHeight = (jawPos[3][1] - jawPos[0][1]) * scale,
+			middlePointX = (jawPos[2][0] + jawPos[1][0]) / 2,
+			middlePointY = (jawPos[3][1] + jawPos[0][1]) / 2,
+			jawWithIf90 = (jawPos[2][1] - jawPos[1][1]) * scale,
+			jawHeightIf90 = (jawPos[3][0] - jawPos[0][0]) * scale;
+		angle = Math.atan2(jawWithIf90, jawWidth);
+		cos = Math.cos(angle);
+		jawWidth = cos === 0 ? Math.abs(jawWithIf90) : jawWidth / cos;
+		jawHeight = cos === 0 ? Math.abs(jawHeightIf90) : jawHeight / cos;
+		ZombieChat.drawRotated(ZombieChat.DOM.imgs["img-below-mouth"],Math.floor(middlePointX),Math.floor(middlePointY),Math.floor(jawWidth),Math.floor(jawHeight), angle);
+		var rightCheekPos = [positions[33], positions[62], positions[13], positions[1]];
+		var rightCheekWidth = (rightCheekPos[2][0] - rightCheekPos[3][0]) * scale * 0.25,
+			rightCheekHeight = (rightCheekPos[1][1] - rightCheekPos[0][1]) * scale,
+			middlePointX = (6 * rightCheekPos[2][0] + rightCheekPos[3][0]) / 7,
+			middlePointY = (6 * rightCheekPos[2][1] + rightCheekPos[3][1]) / 7,
+			rightCheekWithIf90 = (rightCheekPos[2][1] - rightCheekPos[3][1]) * scale * 0.25,
+			rightCheekHeightIf90 = (rightCheekPos[1][0] - rightCheekPos[0][0]) * scale;
+		rightCheekWidth = cos === 0 ? Math.abs(rightCheekWithIf90) : rightCheekWidth / cos;
+		rightCheekHeight = cos === 0 ? Math.abs(rightCheekHeightIf90) : rightCheekHeight / cos;
+		ZombieChat.drawRotated(ZombieChat.DOM.imgs["img-right-cheek"],Math.floor(middlePointX),Math.floor(middlePointY),Math.floor(rightCheekWidth),Math.floor(rightCheekHeight), angle);
 	}
 }
 
