@@ -194,14 +194,10 @@ window.Speech = (function (undefined) {
             $.each(json, function( key, val ) {
                 var hits = transcript.indexOf(val);
                 if(hits > 0) {
-                    percentZombie += 0.1 * hits;
-                    if(percentZombie > 1) {
-                        percentZombie = 1;
-                    }
+                    UpdateZombiePercent(percentZombie);
                 }
-                ZombieChat.transparency = percentZombie;
             });
-          });
+        });
     }
 
     Speech.prototype.start = function () {
@@ -220,3 +216,10 @@ window.Speech = (function (undefined) {
     return Speech
 
 })()
+
+function UpdateZombiePercent(newVal) {
+    if(newVal > 1) {
+        newVal = 1;
+    }
+    ZombieChat.transparency = newVal;
+}
