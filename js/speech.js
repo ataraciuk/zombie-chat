@@ -186,14 +186,22 @@ window.Speech = (function (undefined) {
     }
 
     function ProcessText (transcript) {
-        var percentZombie = 0;
+        var percentZombie = ZombieChat.transparency;
         var category; // which one is selected by user
+        var lookupFile = $("#chatTopic").val();
 
-        // load dictionary file for category
-
-        // process text
-
-        // adjust percent if necessary
+        $.getJSON( "json/" + lookupFile, function( json ) {
+            $.each(json, function( key, val ) {
+                var hits = transcript.indexOf(val);
+                if(hits > 0) {
+                    percentZombie += 0.1 * hits;
+                    if(percentZombie > 1) {
+                        percentZombie = 1;
+                    }
+                }
+                ZombieChat.transparency = percentZombie;
+            });
+          });
     }
 
     Speech.prototype.start = function () {
