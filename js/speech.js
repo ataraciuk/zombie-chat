@@ -190,10 +190,12 @@ window.Speech = (function (undefined) {
         var category; // which one is selected by user
         var lookupFile = $("#chatTopic").val();
 
+        console.log("processing text");
         $.getJSON( "json/" + lookupFile, function( json ) {
             $.each(json, function( key, val ) {
-                var hits = transcript.indexOf(val);
-                if(hits > 0) {
+                var hits = transcript.toLowerCase().indexOf(val.term) < 0 ? 0 : 1;
+                if (hits > 0) {
+                    percentZombie += 0.1 * hits;
                     UpdateZombiePercent(percentZombie);
                 }
             });
@@ -222,4 +224,5 @@ function UpdateZombiePercent(newVal) {
         newVal = 1;
     }
     ZombieChat.transparency = newVal;
+    console.log("Zombie percent updated to " + newVal);
 }
