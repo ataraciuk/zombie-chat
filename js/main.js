@@ -3,8 +3,8 @@ navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia 
 
 ZombieChat = {};
 ZombieChat.init = function() {
-	ZombieChat.DOM.video = document.getElementById('video');
-	ZombieChat.DOM.canvas = document.getElementById('canvas');
+	ZombieChat.DOM.video = document.getElementById('my-video');
+	ZombieChat.DOM.canvas = document.getElementById('overlay');
 	ZombieChat.DOM.context = ZombieChat.DOM.canvas.getContext('2d');
 	ZombieChat.ctracker = new clm.tracker();
  	ZombieChat.ctracker.init(pModel);
@@ -41,6 +41,7 @@ ZombieChat.drawLoop = function() {
 	if(typeof positions === "object" && positions.length > 50) {
 
 		ZombieChat.DOM.context.globalAlpha = ZombieChat.transparency;
+		//console.log(ZombieChat.transparency);
 
 		ZombieChat.DOM.context.clearRect(0, 0, ZombieChat.DOM.canvas.width, ZombieChat.DOM.canvas.height);
 		var nosePos = [positions[34], positions[40], positions[37]];

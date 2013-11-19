@@ -74,10 +74,8 @@ Copyright (c) Nicolas Gallagher and Jonathan Neal
 
 /* new */
 
-#canvas {
+#overlay {
 	position: absolute;
-	top: 0px;
-	left: 0px;
 	-o-transform : scaleX(-1);
 	-webkit-transform : scaleX(-1);
 	transform : scaleX(-1);
@@ -85,7 +83,7 @@ Copyright (c) Nicolas Gallagher and Jonathan Neal
 	filter : fliph; /*IE*/
 }
 
-#video {
+#my-video {
 	
 	-o-transform : scaleX(-1);
 	-webkit-transform : scaleX(-1);
