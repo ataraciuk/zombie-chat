@@ -194,7 +194,7 @@ function startTracking() {
     // start tracking
     ctrack.start(vid);
     // start loop to draw face
-    drawLoop();
+    //drawLoop();
   }
   
   function drawLoop() {
